@@ -1,0 +1,90 @@
+:root {
+  font-size: xx-large;
+  font-family: "San Francisco", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: gainsboro;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.calculadora {
+  background-color: black;
+  border-radius: 15px;
+}
+
+.numbers-section {
+  display: grid;
+  grid-template-rows: repeat(5, 75px);
+  grid-template-columns: repeat(4, 75px);
+  padding: 10px;
+  border-radius: 18px;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 5px;
+  padding: 0;
+  border: none;
+  font-size: x-large;
+}
+
+.number {
+  color: white;
+  background-color: rgb(84, 84, 84);
+}
+
+.number:hover {
+  background-color: rgb(115, 115, 115);
+  outline: none;
+}
+
+.actionButton {
+  color: black;
+  background-color: rgb(149, 149, 149);
+}
+
+.actionButton:hover {
+  background-color: rgb(168, 168, 168);
+}
+
+.actionYellow {
+  color: white;
+  background-color: rgb(255, 179, 0);
+}
+
+.actionYellow:hover {
+  background-color: rgb(255, 201, 75);
+}
+
+.numberZero {
+  padding-left: 26px;
+  text-align: start;
+  border-radius: 35px;
+  grid-column: span 2;
+  color: white;
+  background-color: rgb(84, 84, 84);
+}
+
+.numberZero:hover {
+  background-color:rgb(115, 115, 115);
+}
+
+.display {
+  height: 20vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 25px;
+}
