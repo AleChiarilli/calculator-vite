@@ -5,7 +5,7 @@ const result = document.getElementById("final-value") as HTMLElement;
 const signs = document.querySelectorAll(".sign");
 const equals = document.querySelector(".equals") as HTMLElement;
 const clear = document.querySelector(".clear") as HTMLElement;
-const negative = document.querySelector(".negative");
+const negative = document.querySelector(".negative") as HTMLElement;
 const percent = document.querySelector(".percent");
 
 const status = document.getElementById("calculator-status") as HTMLElement;
@@ -14,19 +14,6 @@ let firstValue: string = "";
 let secondValue: string = "";
 
 let operator = "";
-let resultValue = "";
-
-// for (let i = 0; i < numbers.length; i++) {
-//   numbers[i].addEventListener("click", (e: any) => {
-//     let atr = e.target?.getAttribute("value");
-//     if (isFirstValue === false) {
-//       getFirstValue(atr);
-//     }
-//     if (isSecondValue === false) {
-//       getSecondValue(atr);
-//     }
-//   });
-// }
 
 function updateCalculatorStatus() {
   return `${firstValue} ${operator} ${secondValue}`;
@@ -43,10 +30,7 @@ numbers.forEach((n) => n.addEventListener('click', (event) => {
     secondValue += value;
     displayedValue = secondValue;
   }
-  if (resultValue) {
-    firstValue = resultValue;
-    secondValue = value;
-  }
+
   result.innerHTML = displayedValue;
   status.innerHTML = updateCalculatorStatus();
 }));
@@ -82,9 +66,16 @@ function calculate(numberA: string, numberB: string, operatorSymbol: string) {
 
 equals.addEventListener('click', () => {
   if (!operator) return;
-  result.innerHTML = `${calculate(firstValue, secondValue, operator)
+  const calculationResult = `${calculate(firstValue, secondValue, operator)
   }`;
+  result.innerHTML = calculationResult;
+  firstValue = calculationResult;
+  operator = "";
+  secondValue= "";
   status.innerHTML = updateCalculatorStatus();
+  status.innerHTML = "";
+  
+
 })
 
 clear.addEventListener('click', () => {
@@ -95,29 +86,14 @@ clear.addEventListener('click', () => {
   secondValue = "";
 })
 
+negative.addEventListener('click', () => {
+  const convert = parseInt(firstValue) * -1;
+  firstValue = convert.toString();
+  result.innerHTML = convert.toString();
+})
 
-
-// function getFirstValue(el: number) {
-//   result.innerHTML = "";
-//   firstValue += el;
-//   result.innerHTML = `${firstValue}`;
-//   firstValue = +firstValue;
-// }
-
-// function getSecondValue(el: number) {
-//   if (firstValue != 0 && sign != "") {
-//     secondValue += el;
-//     result.innerHTML = `${secondValue}`;
-//     secondValue = +secondValue;
-//   }
-// }
-
-// function getSign() {
-//   for (let i = 0; i < signs.length; i++) {
-//     signs[i].addEventListener("click", (e: any) => {
-//       sign = e.target?.getAttribute("value");
-//       isFirstValue = true;
-//     });
-//   }
-// }
-// getSign();
+percent?.addEventListener('click', () => {
+  const percent = parseFloat(firstValue) / 100
+  firstValue = percent.toString();
+  result.innerHTML = firstValue;
+})
